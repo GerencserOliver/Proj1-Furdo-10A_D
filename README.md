@@ -3,4 +3,4 @@ Fürdő 2017.05.15-i emelt szintű informatika érettségi "Fürdő" programozá
 
 Csapattagok:
  # Gerencsér Olivér
- # Fehér Kristóf
+ * Fehér Kristóf
