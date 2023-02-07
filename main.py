@@ -1,5 +1,10 @@
+from Megoldas import Megoldas
+
+
 def main() -> None:
-    pass  # Kezd a kódolást itt
+    # 1. feladat
+    m: Megoldas = Megoldas('furdoadat.txt')
+    print(m)
 
 
 if __name__ == "__main__":
