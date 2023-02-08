@@ -1,16 +1,44 @@
 class Furdo:
-    atjaro: int
-    oltozo: int
-    uszoda: int
-    szaunak: int
-    gyogyvizes_medencek: int
-    strand: int
+    _azonosito: int
+    _furdo_azonosito: int
+    _be_ki_lepett: int
+    _ki_ora: int
+    _ki_perc: int
+    _ki_mp: int
+
+    @property
+    def azonosito(self) -> int:
+        return self._azonosito
+
+    @property
+    def furdo_azonosito(self) -> int:
+        return self._furdo_azonosito
+
+    @property
+    def rekord_ideje_mp(self) -> int:
+        return self.ki_ora * 3600 + self.ki_perc * 60 + self.ki_mp
+
+    @property
+    def ki_ora(self) -> int:
+        return self._ki_ora
+
+    @property
+    def ki_perc(self) -> int:
+        return self._ki_perc
+
+    @property
+    def ki_mp(self) -> int:
+        return self._ki_mp
+
+    @property
+    def be_ki_lepett(self) -> int:
+        return self._be_ki_lepett
 
     def __init__(self, sor: str):
-        at, olt, usz, sza, gy_med, st = sor.split(' ')
-        self.atjaro = int(at)
-        self.oltozo = int(olt)
-        self.sza = int(usz)
-        self.szaunak = int(sza)
-        self.gyogyvizes_medencek = int(gy_med)
-        self.strand = int(st)
+        azonosito, furdo_azonosito, be_ki, ki_ora, ki_perc, ki_mp = sor.split(' ')
+        self._azonosito = int(azonosito)
+        self._furdo_azonosito = int(furdo_azonosito)
+        self._be_ki_lepett = int(be_ki)
+        self._ki_ora = int(ki_ora)
+        self._ki_perc = int(ki_perc)
+        self._ki_mp = int(ki_mp)
