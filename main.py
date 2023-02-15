@@ -16,7 +16,8 @@ def main() -> None:
 
     # 4. feladat
     print('\n4. feladat')
-    print(f'{m.kello_azonosito}. vendég {"%.0f" % m.legtovabb_oraban}:{"%.0f" % m.legtovabb_percben}:{"%.0f" % m.legtovabb_mpben}')
+    print('A legtöbb időt eltöltő vendég:')
+    print(f'{m.adat_ido_kiiras}')
 
     # 5. feladat
     print('\n5. feladat')

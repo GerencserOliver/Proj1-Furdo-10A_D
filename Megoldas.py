@@ -22,58 +22,41 @@ class Megoldas:
                     utolso_vendeg = adat
         return utolso_vendeg
 
-    @property
-    def kello_id(self) -> int:
-        kello_id: int = 306
-        return kello_id
+    def azonosito_lista(self, azonosito: int) -> int:
+        azonosito_stat: dict[int, int] = {}
+        for adat in self.furdok:
+            if adat.azonosito not in azonosito_stat:
+                azonosito_stat.setdefault(adat.azonosito, 0)
+            else:
+                azonosito_stat[adat.azonosito] += 1
+        return azonosito_stat[azonosito]
 
     @property
-    def legtovabb_furdo(self) -> int:
-        egy_ember_idoi: list[int] = []
-        legnagyobb_ido: int = 0
-        legkisebb_ido: int = 10000000
-        for f in self.furdok:
-            if f.azonosito == self.kello_id:
-                egy_ember_idoi.append(f.rekord_ideje_mp)
-                for e in self.furdok:
-                    if e.rekord_ideje_mp in egy_ember_idoi:
-                        if e.rekord_ideje_mp > legnagyobb_ido:
-                            legnagyobb_ido = e.rekord_ideje_mp
-                for k in self.furdok:
-                    if k.rekord_ideje_mp in egy_ember_idoi:
-                        if k.rekord_ideje_mp < legkisebb_ido:
-                            legkisebb_ido = k.rekord_ideje_mp
-        egy_ember_ideje: int = legnagyobb_ido - legkisebb_ido
-        return egy_ember_ideje
+    def legtobb_ido_eltoltve(self) -> list[int]:
+        legtobb_ido_eltoltve: int = 0
+        legtobb_idot_eltolto_ember: int = self.furdok[0].azonosito
+        for i, adat in enumerate(self.furdok):
+            count_skip = self.azonosito_lista(adat.azonosito)
+            try:
+                while adat.azonosito == self.furdok[i + 1].azonosito:
+                    count_skip -= 1
+                    if count_skip == 0:
+                        break
+                    i += 1
+            except IndexError:
+                if legtobb_ido_eltoltve < self.furdok[i].rekord_ideje_mp - adat.rekord_ideje_mp:
+                    legtobb_idot_eltolto_ember = adat.azonosito
+                    legtobb_ido_eltoltve = self.furdok[i].rekord_ideje_mp - adat.rekord_ideje_mp
+                break
+            if legtobb_ido_eltoltve < self.furdok[i + 1].rekord_ideje_mp - adat.rekord_ideje_mp:
+                legtobb_idot_eltolto_ember = adat.azonosito
+                legtobb_ido_eltoltve = self.furdok[i + 1].rekord_ideje_mp - adat.rekord_ideje_mp
+        return [legtobb_idot_eltolto_ember, legtobb_ido_eltoltve]
 
     @property
-    def legtovabb_oraban(self) -> float:
-        legt_oraban: float = self.legtovabb_furdo // 3600
-        return legt_oraban
-
-    @property
-    def legtovabb_percben(self) -> float:
-        legt_percben: float = (self.legtovabb_furdo - self.legtovabb_oraban * 3600) // 60
-        return legt_percben
-
-    @property
-    def legtovabb_mpben(self) -> float:
-        legt_mpben: float = (self.legtovabb_furdo - (self.legtovabb_oraban * 3600 + self.legtovabb_percben * 60))
-        return legt_mpben
-
-    @property
-    def azonosito_lista(self) -> list[int]:
-        id_lista: list[int] = []
-        for f in self.furdok:
-            if f.azonosito not in id_lista:
-                id_lista.append(f.azonosito)
-        return id_lista
-
-    @property
-    def kello_azonosito(self) -> int:
-        for f in self.azonosito_lista:
-            if f == self.kello_id:
-                return f
+    def adat_ido_kiiras(self) -> str:
+        kiirni_valo = self.legtobb_ido_eltoltve
+        return f'{kiirni_valo[0]}. vendég {kiirni_valo[1] // 3600}:{kiirni_valo[1] // 60 % 60}:{kiirni_valo[1] % 60}'
 
     def kiiras_oraban(self, vendeg: Furdo) -> str:
         return f'{vendeg.ki_ora}:{vendeg.ki_perc}:{vendeg.ki_mp}'
