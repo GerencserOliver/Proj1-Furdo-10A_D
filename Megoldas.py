@@ -92,6 +92,28 @@ class Megoldas:
             elozo_vendeg = vendeg
         return ketto_hasznalatos_vendeg
 
+    @property
+    def vendegek_erkezes(self) -> list[int]:
+        hat_kilenc: int = 0
+        kilenc_tizenhat: int = 0
+        tizenhat_husz: int = 0
+        elso_alkalom: list[int] = []
+        for e in self.furdok:
+            if e.azonosito not in elso_alkalom and e.be_ki_lepett:
+                if e.ki_ora >= 6 and e.ki_ora < 9:
+                    elso_alkalom.append(e.azonosito)
+                    hat_kilenc += 1
+                    continue
+                elif e.ki_ora >= 9 and e.ki_ora < 16:
+                    elso_alkalom.append(e.azonosito)
+                    kilenc_tizenhat += 1
+                    continue
+                elif e.ki_ora >= 16 and e.ki_ora < 20:
+                    elso_alkalom.append(e.azonosito)
+                    tizenhat_husz += 1
+                    continue
+        return [hat_kilenc, kilenc_tizenhat, tizenhat_husz]
+
     def __init__(self, forras: str):
         self.furdok = []
         with open(forras, 'r', encoding='utf-8')as file:
