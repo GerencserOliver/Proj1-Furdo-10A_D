@@ -14,6 +14,12 @@ def main() -> None:
     print('\n3. feladat')
     print(f'A fürdőben {m.vendegek()} vendég járt csak egy részlegen.')
 
+    # 5. feladat
+    print('\n5. feladat')
+    print(f'6-9 óra között {m.vendegek_erkezes[0]} vendég')
+    print(f'9-16 óra között {m.vendegek_erkezes[1]} vendég')
+    print(f'16-20 óra között {m.vendegek_erkezes[2]} vendég')
+
 
 if __name__ == "__main__":
     main()
