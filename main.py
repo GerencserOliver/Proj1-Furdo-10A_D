@@ -14,6 +14,10 @@ def main() -> None:
     print('\n3. feladat')
     print(f'A fürdőben {m.vendegek()} vendég járt csak egy részlegen.')
 
+    # 4. feladat
+    print('\n4. feladat')
+    print(f'{m.kello_azonosito}. vendég {"%.0f" % m.legtovabb_oraban}:{"%.0f" % m.legtovabb_percben}:{"%.0f" % m.legtovabb_mpben}')
+
     # 5. feladat
     print('\n5. feladat')
     print(f'6-9 óra között {m.vendegek_erkezes[0]} vendég')
