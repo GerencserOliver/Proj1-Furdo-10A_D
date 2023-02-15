@@ -75,6 +75,42 @@ class Megoldas:
             if f == self.kello_id:
                 return f
 
+    @property
+    def bent_voltak_szama_uszoda(self) -> int:
+        uszodaban_voltak: list[int] = []
+        for f in self.furdok:
+            if f.azonosito not in uszodaban_voltak:
+                if f.furdo_azonosito == 1:
+                    uszodaban_voltak.append(f.azonosito)
+        return len(uszodaban_voltak)
+
+    @property
+    def bent_voltak_szama_szauna(self) -> int:
+        szaunaban_voltak: list[int] = []
+        for f in self.furdok:
+            if f.azonosito not in szaunaban_voltak:
+                if f.furdo_azonosito == 2:
+                    szaunaban_voltak.append(f.azonosito)
+        return len(szaunaban_voltak)
+
+    @property
+    def bent_voltak_szama_gyogymeddence(self) -> int:
+        gyogyfurdoben_voltak: list[int] = []
+        for f in self.furdok:
+            if f.azonosito not in gyogyfurdoben_voltak:
+                if f.furdo_azonosito == 3:
+                    gyogyfurdoben_voltak.append(f.azonosito)
+        return len(gyogyfurdoben_voltak)
+
+    @property
+    def bent_voltak_szama_strand(self) -> int:
+        strandon_voltak: list[int] = []
+        for f in self.furdok:
+            if f.azonosito not in strandon_voltak:
+                if f.furdo_azonosito == 4:
+                    strandon_voltak.append(f.azonosito)
+        return len(strandon_voltak)
+
     def kiiras_oraban(self, vendeg: Furdo) -> str:
         return f'{vendeg.ki_ora}:{vendeg.ki_perc}:{vendeg.ki_mp}'
 
