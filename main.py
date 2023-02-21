@@ -26,10 +26,10 @@ def main() -> None:
 
     # 7. feladat
     print('\n7. feladat')
-    print(f'Uszoda: {m.bent_voltak_szama_uszoda}')
-    print(f'Szauna: {m.bent_voltak_szama_szauna}')
-    print(f'Gyógyvizes medencék: {m.bent_voltak_szama_gyogymeddence}')
-    print(f'Strand: {m.bent_voltak_szama_strand}')
+    print(f'Uszoda: {len(m.bent_voltak[0])}')
+    print(f'Szauna: {len(m.bent_voltak[1])}')
+    print(f'Gyógyvizes medencék: {len(m.bent_voltak[2])}')
+    print(f'Strand: {len(m.bent_voltak[3])}')
 
 
 if __name__ == "__main__":
