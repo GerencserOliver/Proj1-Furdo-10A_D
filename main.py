@@ -25,6 +25,13 @@ def main() -> None:
     print(f'9-16 óra között {m.vendegek_erkezes[1]} vendég')
     print(f'16-20 óra között {m.vendegek_erkezes[2]} vendég')
 
+    # 7. feladat
+    print('\n7. feladat')
+    print(f'Uszoda: {len(m.bent_voltak[0])}')
+    print(f'Szauna: {len(m.bent_voltak[1])}')
+    print(f'Gyógyvizes medencék: {len(m.bent_voltak[2])}')
+    print(f'Strand: {len(m.bent_voltak[3])}')
+
 
 if __name__ == "__main__":
     main()
