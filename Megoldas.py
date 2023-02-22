@@ -75,42 +75,6 @@ class Megoldas:
                 strand.add(e.azonosito)
         return [uszoda, szauna, gyogymedence, strand]
 
-    # @property
-    # def bent_voltak_szama_uszoda(self) -> int:
-    #     uszodaban_voltak: list[int] = []
-    #     for f in self.furdok:
-    #         if f.azonosito not in uszodaban_voltak:
-    #             if f.furdo_azonosito == 1:
-    #                 uszodaban_voltak.append(f.azonosito)
-    #     return len(uszodaban_voltak)
-
-    # @property
-    # def bent_voltak_szama_szauna(self) -> int:
-    #     szaunaban_voltak: list[int] = []
-    #     for f in self.furdok:
-    #         if f.azonosito not in szaunaban_voltak:
-    #             if f.furdo_azonosito == 2:
-    #                 szaunaban_voltak.append(f.azonosito)
-    #     return len(szaunaban_voltak)
-
-    # @property
-    # def bent_voltak_szama_gyogymeddence(self) -> int:
-    #     gyogyfurdoben_voltak: list[int] = []
-    #     for f in self.furdok:
-    #         if f.azonosito not in gyogyfurdoben_voltak:
-    #             if f.furdo_azonosito == 3:
-    #                 gyogyfurdoben_voltak.append(f.azonosito)
-    #     return len(gyogyfurdoben_voltak)
-
-    # @property
-    # def bent_voltak_szama_strand(self) -> int:
-    #     strandon_voltak: list[int] = []
-    #     for f in self.furdok:
-    #         if f.azonosito not in strandon_voltak:
-    #             if f.furdo_azonosito == 4:
-    #                 strandon_voltak.append(f.azonosito)
-    #     return len(strandon_voltak)
-
     def kiiras_oraban(self, vendeg: Furdo) -> str:
         return f'{vendeg.ki_ora}:{vendeg.ki_perc}:{vendeg.ki_mp}'
 
@@ -149,6 +113,44 @@ class Megoldas:
                     tizenhat_husz += 1
                     continue
         return [hat_kilenc, kilenc_tizenhat, tizenhat_husz]
+
+    def ido_kiiras(self, ido: int) -> str:
+        ki_ora: str = str(ido // 3600)
+        ki_perc: str = str(ido // 60 % 60)
+        ki_mp: str = str(ido % 60)
+        if len(ki_ora) != 2:
+            ki_ora = '0' + ki_ora
+        if len(ki_perc) != 2:
+            ki_perc = '0' + ki_perc
+        if len(ki_mp) != 2:
+            ki_mp = '0' + ki_mp
+        return f'{ki_ora}:{ki_perc}:{ki_mp}'
+
+    @property
+    def szauna_vendeg_idok(self):
+        eredmenyek: list[str] = []
+        szauna_ido_eltoltve: int = 0
+        vendeg: Furdo = self.furdok[0]
+        first_time: list[int] = []
+        for i, vendeg in enumerate(self.furdok):
+            szauna_ido_eltoltve: int = 0
+            if vendeg.furdo_azonosito == 2 and vendeg.azonosito not in first_time:
+                if self.furdok[i + 1].furdo_azonosito == 2 and self.furdok[i + 1].azonosito == vendeg.azonosito:
+                    szauna_ido_eltoltve += self.furdok[i + 1].rekord_ideje_mp - vendeg.rekord_ideje_mp
+                    while vendeg.azonosito == self.furdok[i + 1].azonosito:
+                        if self.furdok[i + 1].furdo_azonosito == 2 and self.furdok[i + 2].furdo_azonosito == 2:
+                            szauna_ido_eltoltve += self.furdok[i + 2].rekord_ideje_mp - self.furdok[i + 1].rekord_ideje_mp
+                            break
+                        else:
+                            i += 1
+                    eredmenyek.append(f'{vendeg.azonosito} {self.ido_kiiras(szauna_ido_eltoltve)}')
+                    first_time.append(vendeg.azonosito)
+                    continue
+        with open('szauna.txt', 'w', encoding='utf-8') as file:
+            for s in eredmenyek:
+                file.write(f'{s}\n')
+            file.close()
+        return 'Fájlba kiírva.'
 
     def __init__(self, forras: str):
         self.furdok = []

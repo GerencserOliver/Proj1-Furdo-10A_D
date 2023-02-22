@@ -25,6 +25,10 @@ def main() -> None:
     print(f'9-16 óra között {m.vendegek_erkezes[1]} vendég')
     print(f'16-20 óra között {m.vendegek_erkezes[2]} vendég')
 
+    # 6. feladat
+    print('\n6. feladat')
+    print(m.szauna_vendeg_idok)
+
     # 7. feladat
     print('\n7. feladat')
     print(f'Uszoda: {len(m.bent_voltak[0])}')
