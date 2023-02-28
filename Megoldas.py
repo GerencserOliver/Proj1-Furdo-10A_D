@@ -1,12 +1,12 @@
-from Furdo import Furdo
+from Furdovendeg import Furdovendeg
 
 
 class Megoldas:
-    furdok: list[Furdo]
+    furdok: list[Furdovendeg]
 
     @property
-    def elso_oltozo_kilepes(self) -> Furdo:
-        elso_vendeg: Furdo = self.furdok[0]
+    def elso_oltozo_kilepes(self) -> Furdovendeg:
+        elso_vendeg: Furdovendeg = self.furdok[0]
         for adat in self.furdok:
             if adat.be_ki_lepett is False and adat.furdohelyseg_azonosito == 0:
                 if elso_vendeg.idopont_mpben > adat.idopont_mpben:
@@ -14,8 +14,8 @@ class Megoldas:
         return elso_vendeg
 
     @property
-    def utolso_oltozo_kilepes(self) -> Furdo:
-        utolso_vendeg: Furdo = self.furdok[0]
+    def utolso_oltozo_kilepes(self) -> Furdovendeg:
+        utolso_vendeg: Furdovendeg = self.furdok[0]
         for adat in self.furdok:
             if adat.be_ki_lepett is False and adat.furdohelyseg_azonosito == 0:
                 if utolso_vendeg.idopont_mpben < adat.idopont_mpben:
@@ -75,13 +75,13 @@ class Megoldas:
                 strand.add(e.furdozo_azonosito)
         return [uszoda, szauna, gyogymedence, strand]
 
-    def kiiras_oraban(self, vendeg: Furdo) -> str:
+    def kiiras_oraban(self, vendeg: Furdovendeg) -> str:
         return f'{vendeg.ki_ora}:{vendeg.ki_perc}:{vendeg.ki_mp}'
 
     def vendegek(self) -> int:
         furdo_helyek: list[int] = []
         ketto_hasznalatos_vendeg: int = 0
-        elozo_vendeg: Furdo = self.furdok[0]
+        elozo_vendeg: Furdovendeg = self.furdok[0]
         for vendeg in self.furdok:
             if elozo_vendeg.furdozo_azonosito != vendeg.furdozo_azonosito:
                 if len(furdo_helyek) == 2:
@@ -130,7 +130,7 @@ class Megoldas:
     def szauna_vendeg_idok(self):
         eredmenyek: list[str] = []
         szauna_ido_eltoltve: int = 0
-        vendeg: Furdo = self.furdok[0]
+        vendeg: Furdovendeg = self.furdok[0]
         first_time: list[int] = []
         for i, vendeg in enumerate(self.furdok):
             szauna_ido_eltoltve: int = 0
@@ -156,4 +156,4 @@ class Megoldas:
         self.furdok = []
         with open(forras, 'r', encoding='utf-8')as file:
             for sor in file.read().splitlines():
-                self.furdok.append(Furdo(sor))
+                self.furdok.append(Furdovendeg(sor))
