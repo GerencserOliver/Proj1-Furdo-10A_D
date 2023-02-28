@@ -1,7 +1,7 @@
 class Furdo:
     _furdozo_azonosito: int
     _furdohelyseg_azonosito: int
-    _bement_e: int
+    _be_ki_lepett: int
     _ki_ora: int
     _ki_perc: int
     _ki_mp: int
@@ -31,8 +31,8 @@ class Furdo:
         return self._ki_mp
 
     @property
-    def bement_e(self) -> bool:
-        if self._bement_e == 1:
+    def be_ki_lepett(self) -> bool:
+        if self._be_ki_lepett == 1:
             return False
         else:
             return True
@@ -41,7 +41,7 @@ class Furdo:
         furdozo_azonosito, furdohelyseg_azonosito, be_ki, ki_ora, ki_perc, ki_mp = sor.split(' ')
         self._furdozo_azonosito = int(furdozo_azonosito)
         self._furdohelyseg_azonosito = int(furdohelyseg_azonosito)
-        self._bement_e = bool(be_ki)
+        self._be_ki_lepett = bool(be_ki)
         self._ki_ora = int(ki_ora)
         self._ki_perc = int(ki_perc)
         self._ki_mp = int(ki_mp)
