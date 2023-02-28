@@ -31,14 +31,17 @@ class Furdo:
         return self._ki_mp
 
     @property
-    def bement_e(self) -> int:
-        return self._bement_e
+    def bement_e(self) -> bool:
+        if self._bement_e == 1:
+            return False
+        else:
+            return True
 
     def __init__(self, sor: str):
         furdozo_azonosito, furdohelyseg_azonosito, be_ki, ki_ora, ki_perc, ki_mp = sor.split(' ')
         self._furdozo_azonosito = int(furdozo_azonosito)
         self._furdohelyseg_azonosito = int(furdohelyseg_azonosito)
-        self._bement_e = int(be_ki)
+        self._bement_e = bool(be_ki)
         self._ki_ora = int(ki_ora)
         self._ki_perc = int(ki_perc)
         self._ki_mp = int(ki_mp)

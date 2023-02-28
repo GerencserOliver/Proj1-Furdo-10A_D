@@ -8,7 +8,7 @@ class Megoldas:
     def elso_oltozo_kilepes(self) -> Furdo:
         elso_vendeg: Furdo = self.furdok[0]
         for adat in self.furdok:
-            if adat.bement_e == 1 and adat.furdohelyseg_azonosito == 0:
+            if adat.bement_e is False and adat.furdohelyseg_azonosito == 0:
                 if elso_vendeg.idopont_mpben > adat.idopont_mpben:
                     elso_vendeg = adat
         return elso_vendeg
@@ -17,7 +17,7 @@ class Megoldas:
     def utolso_oltozo_kilepes(self) -> Furdo:
         utolso_vendeg: Furdo = self.furdok[0]
         for adat in self.furdok:
-            if adat.bement_e == 1 and adat.furdohelyseg_azonosito == 0:
+            if adat.bement_e is False and adat.furdohelyseg_azonosito == 0:
                 if utolso_vendeg.idopont_mpben < adat.idopont_mpben:
                     utolso_vendeg = adat
         return utolso_vendeg
