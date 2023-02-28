@@ -1,21 +1,21 @@
 class Furdo:
-    _azonosito: int
-    _furdo_azonosito: int
+    _furdozo_azonosito: int
+    _furdohelyseg_azonosito: int
     _be_ki_lepett: int
     _ki_ora: int
     _ki_perc: int
     _ki_mp: int
 
     @property
-    def azonosito(self) -> int:
-        return self._azonosito
+    def furdozo_azonosito(self) -> int:
+        return self._furdozo_azonosito
 
     @property
-    def furdo_azonosito(self) -> int:
-        return self._furdo_azonosito
+    def furdohelyseg_azonosito(self) -> int:
+        return self._furdohelyseg_azonosito
 
     @property
-    def rekord_ideje_mp(self) -> int:
+    def idopont_mpben(self) -> int:
         return self.ki_ora * 3600 + self.ki_perc * 60 + self.ki_mp
 
     @property
@@ -31,14 +31,17 @@ class Furdo:
         return self._ki_mp
 
     @property
-    def be_ki_lepett(self) -> int:
-        return self._be_ki_lepett
+    def be_ki_lepett(self) -> bool:
+        if self._be_ki_lepett == 1:
+            return False
+        else:
+            return True
 
     def __init__(self, sor: str):
-        azonosito, furdo_azonosito, be_ki, ki_ora, ki_perc, ki_mp = sor.split(' ')
-        self._azonosito = int(azonosito)
-        self._furdo_azonosito = int(furdo_azonosito)
-        self._be_ki_lepett = int(be_ki)
+        furdozo_azonosito, furdohelyseg_azonosito, be_ki, ki_ora, ki_perc, ki_mp = sor.split(' ')
+        self._furdozo_azonosito = int(furdozo_azonosito)
+        self._furdohelyseg_azonosito = int(furdohelyseg_azonosito)
+        self._be_ki_lepett = bool(be_ki)
         self._ki_ora = int(ki_ora)
         self._ki_perc = int(ki_perc)
         self._ki_mp = int(ki_mp)
