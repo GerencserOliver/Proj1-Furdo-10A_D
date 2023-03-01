@@ -1,7 +1,7 @@
 class Furdovendeg:
     _furdozo_azonosito: int
     _furdohelyseg_azonosito: int
-    _be_ki_lepett: bool
+    _be_ki_lepett: int
     _ki_ora: int
     _ki_perc: int
     _ki_mp: int
@@ -32,7 +32,7 @@ class Furdovendeg:
 
     @property
     def be_ki_lepett(self) -> bool:
-        if self._be_ki_lepett is False:
+        if self._be_ki_lepett == 1:
             return False
         else:
             return True
