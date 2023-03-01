@@ -41,7 +41,7 @@ class Furdo:
         furdozo_azonosito, furdohelyseg_azonosito, be_ki, ki_ora, ki_perc, ki_mp = sor.split(' ')
         self._furdozo_azonosito = int(furdozo_azonosito)
         self._furdohelyseg_azonosito = int(furdohelyseg_azonosito)
-        self._be_ki_lepett = bool(be_ki)
+        self._be_ki_lepett = int(be_ki)
         self._ki_ora = int(ki_ora)
         self._ki_perc = int(ki_perc)
         self._ki_mp = int(ki_mp)
