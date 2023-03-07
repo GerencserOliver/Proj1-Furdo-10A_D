@@ -25,7 +25,7 @@ class test_Megoldas(TestCase):
         self.assertEqual(self.megoldas.vendegek_erkezes[2], 46)
 
     def test_szauna_vendeg_idok(self):
-        self.assertEqual(self.megoldas.adat_ido_kiiras, 'Fájlba kiírva.')
+        self.assertEqual(self.megoldas.szauna_vendeg_idok, 'Fájlba kiírva.')
 
     def test_bent_voltak(self):
         self.assertEqual(len(self.megoldas.bent_voltak[0]), 41)

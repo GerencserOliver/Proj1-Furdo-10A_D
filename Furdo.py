@@ -31,11 +31,8 @@ class Furdo:
         return self._ki_mp
 
     @property
-    def be_ki_lepett(self) -> bool:
-        if self._be_ki_lepett == 1:
-            return False
-        else:
-            return True
+    def be_ki_lepett(self) -> int:
+        return self._be_ki_lepett
 
     def __init__(self, sor: str):
         furdozo_azonosito, furdohelyseg_azonosito, be_ki, ki_ora, ki_perc, ki_mp = sor.split(' ')

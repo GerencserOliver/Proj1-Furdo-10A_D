@@ -26,11 +26,11 @@ class test_Furdo(TestCase):
         self.assertEqual(self.sor53.furdohelyseg_azonosito, 0)
 
     def test_be_ki_lepett(self):
-        self.assertEqual(self.sor1.be_ki_lepett, False)
-        self.assertEqual(self.sor5.be_ki_lepett, False)
-        self.assertEqual(self.sor14.be_ki_lepett, True)
-        self.assertEqual(self.sor35.be_ki_lepett, False)
-        self.assertEqual(self.sor53.be_ki_lepett, False)
+        self.assertEqual(self.sor1.be_ki_lepett, 1)
+        self.assertEqual(self.sor5.be_ki_lepett, 1)
+        self.assertEqual(self.sor14.be_ki_lepett, 0)
+        self.assertEqual(self.sor35.be_ki_lepett, 1)
+        self.assertEqual(self.sor53.be_ki_lepett, 1)
 
     def test_ki_ora(self):
         self.assertEqual(self.sor1.ki_ora, 6)
